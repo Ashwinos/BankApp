@@ -11,7 +11,10 @@ class HomeController extends Controller
 {
     public function homePage(Request $request){
         $user = Auth::user(); 
-        $balance = $user->balance;
+        $balance = Balance::where('user_id', $user->id)
+                      ->orderBy('created_at', 'desc') // or 'id', 'desc'
+                      ->first();
+
         return view('Home.home',compact('user','balance'));
 }
 }   

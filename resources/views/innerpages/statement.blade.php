@@ -1,16 +1,7 @@
-@include('Home.head')
 
-@include('Home.navbar')
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Statement of Account</title>
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-</head>
-<body class="bg-gray-100 flex items-center justify-center min-h-screen">
+@extends('layout')
+@section('content')
     <div class="bg-white shadow-md rounded p-6">
         <h2 class="text-xl font-bold mb-4">Statement of account</h2>
         <table class="min-w-full bg-white">
@@ -89,8 +80,7 @@
             </nav>
         </div>
     </div>
-</body>
-</html>
+@endsection
 
  
 

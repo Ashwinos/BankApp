@@ -14,16 +14,17 @@ class BalanceController extends Controller
             'amount' => 'required|numeric|min:0.01',
         ]);
 
-        $user = Auth::user();
-        $amount = $request->input('amount');
-
-
-        $balance = Balance::firstOrCreate(
-            ['user_id' => $user->id],
-            ['amount' => 0.00]
-        );
-
-        $balance->balance += $amount;
+        $user = Auth::user();     
+        $amount = $request->input('amount');      
+        $currentBalance= Balance::where('user_id', $user->id)
+                          ->orderBy('created_at', 'desc') // or 'id', 'desc'
+                          ->first();
+        $balance=new Balance;
+        $balance->user_id = $user->id;
+        $balance->balance =$currentBalance->balance + $amount;
+        $balance->debit= 0;
+        $balance->credit= $amount;
+        $balance->from = 'self';
         $balance->save();
 
         return redirect()->intended('/home')->with('success', 'Amount added successfully!');
@@ -37,15 +38,18 @@ class BalanceController extends Controller
 
         $user = Auth::user();
         $amount = $request->input('amount');
-
-
         $balance = Balance::where('user_id', $user->id)->first();
-
-        
-        if ($balance && $balance->balance >= $amount) {
-            $balance->balance -= $amount;
+        $currentBalance= Balance::where('user_id', $user->id)
+                          ->orderBy('created_at', 'desc') // or 'id', 'desc'
+                          ->first();
+        if ( $currentBalance >= $amount) {
+            $balance=new Balance;
+            $balance->user_id = $user->id;
+            $balance->balance =$currentBalance->balance- $amount;
+            $balance->debit= $amount;
+            $balance->credit= 0;
+            $balance->from = 'self';
             $balance->save();
-
             return redirect()->intended('/home')->with('success', 'Amount withdrawn successfully!');
         }
 

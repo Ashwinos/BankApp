@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Balance;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Validator;
@@ -30,7 +31,18 @@ class RegistrationController extends Controller
             }
            
         
-        $message = User::create($data);
+        $user = User::create($data);
+        // Balance::create([
+        //     'user_id' => $user->id,
+        //     'balance' => 0.00,
+        // ]);
+       
+        $balance=new Balance;
+        $balance->user_id=$user->id;
+        $balance->balance=0.00;
+        $balance->save();
+        
+           
         return redirect()->route('loginpage')->with('success', 'Registration successful. You can now log in.');
 }
 }
