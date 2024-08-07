@@ -42,9 +42,14 @@ class LoginController extends Controller
 
 
 
-        public function logout()
+        public function logout(Request $request)
         {
-            Auth::logout(); // Log the user out
-            return redirect()->route('loginpage'); // Redirect to the login page
+            Auth::logout();
+            return redirect()->route('loginpage');
+        }
+
+
+        public function forgotPassword(){
+            return view('innerpages.forgotpassword');
         }
 }

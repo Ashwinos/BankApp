@@ -26,17 +26,17 @@
                     @if ($errors->has('password'))
                     <span>{{ $errors->first('password') }}</span>
                     @endif
-                    <a href="#"
+                    <a href="{{ route('forgotPassword') }}"
                         class="text-xs text-gray-600 hover:text-indigo-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Forgot
                         Password?</a>
                 </div>
-                <div class="flex items-center justify-between mb-4">
+                {{-- <div class="flex items-center justify-between mb-4">
                     <div class="flex items-center">
                         <input type="checkbox" id="remember" class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500 focus:outline-none" checked>
                         <label for="remember" class="ml-2 block text-sm text-gray-700 dark:text-gray-300">Remember me</label>
                     </div>
                    
-                </div>
+                </div> --}}
                 <button type="submit" class="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Login</button>
             </form>
            <p style="font-size: 12px; margin-top: 10px;">You don't have account yet? <a href="{{ route('registrationpage') }}"

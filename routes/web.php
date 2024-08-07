@@ -8,6 +8,7 @@ use App\Http\Controllers\RegistrationController;
 use App\Http\Controllers\StatementController;
 use App\Http\Controllers\TransferController;
 use App\Http\Controllers\WithdrawController;
+use App\Http\Middleware\CheckUser;
 use Illuminate\Support\Facades\Route;
 
 
@@ -28,6 +29,9 @@ Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 Route::post('/addamount', [BalanceController::class, 'addAmount'])->name('addAmount');
 Route::post('/minusamount', [BalanceController::class, 'minusAmount'])->name('minusAmount');
 Route::post('/transferamount', [BalanceController::class, 'transferAmount'])->name('transferAmount');
+
+Route::get('/forgotpassword', [LoginController::class, 'forgotPassword'])->name('forgotPassword');
+
 
 
 
