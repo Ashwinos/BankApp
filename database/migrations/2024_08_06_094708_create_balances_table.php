@@ -14,6 +14,10 @@ return new class extends Migration
         Schema::create('balances', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id');
+            $table->string('from')->nullable();
+            $table->string('to')->nullable();
+            $table->integer('debit')->default(0);
+            $table->integer('credit')->default(0);
             $table->decimal('balance', 15, 2);
         
 

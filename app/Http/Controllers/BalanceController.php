@@ -63,7 +63,18 @@ class BalanceController extends Controller
     public function transferAmount(Request $request)
     {
         $request->validate([
-            'email' => 'required|email|exists:users,email',
+            'email' => [
+                'required',
+                'email',
+                'exists:users,email',
+                function ($attribute, $value, $fail) {
+                    if ($value == Auth::user()->email) {
+                        $fail('You cannot transfer money to yourself.');
+                        return redirect()->back()->withErrors(['email' => 'Self transfer unavailable']);
+                        
+                    }
+                },
+            ],
             'amount' => 'required|numeric|min:0.01',
         ]);
 

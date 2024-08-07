@@ -7,6 +7,9 @@
             <div class="mb-4">
                 <label class="block text-gray-600 text-sm font-semibold mb-2" for="email">Email address</label>
                 <input class="appearance-none border border-gray-300 rounded-lg w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500" name="email" id="email" type="email" placeholder="Enter email">
+                <p style="color: red"> @if ($errors->has('email'))
+                    <span class="error-message">{{ $errors->first('email') }}</span>
+                @endif </p>
             </div>
             <div class="mb-4">
                 <label class="block text-gray-600 text-sm font-semibold mb-2" for="amount">Amount</label>
