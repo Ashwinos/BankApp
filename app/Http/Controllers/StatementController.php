@@ -10,7 +10,7 @@ class StatementController extends Controller
 {
     public function statementPage(){
         $userId = Auth::id();
-        $transactions = Balance::where('user_id', $userId)->get();
+        $transactions = Balance::where('user_id', $userId)->paginate(10);
         return view('innerpages.statement', compact('transactions'));
    
 }

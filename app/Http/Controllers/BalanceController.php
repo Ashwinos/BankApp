@@ -44,13 +44,13 @@ class BalanceController extends Controller
         $currentBalance= Balance::where('user_id', $user->id)
                           ->orderBy('created_at', 'desc') // or 'id', 'desc'
                           ->first();
-        if ( $currentBalance >= $amount) {
-            $balance=new Balance;
+        if ($currentBalance && $currentBalance->balance >= $amount) {
+            $balance = new Balance;
             $balance->user_id = $user->id;
-            $balance->balance =$currentBalance->balance- $amount;
+            $balance->balance =$currentBalance->balance - $amount;
             $balance->debit= $amount;
             $balance->credit= 0;
-            $balance->from = 'self';
+            $balance->from = 'self';    
             $balance->save();
             return redirect()->intended('/home')->with('success', 'Amount withdrawn successfully!');
         }
