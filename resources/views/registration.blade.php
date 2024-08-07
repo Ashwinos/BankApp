@@ -76,7 +76,7 @@
                         
                     </div>
                 </form>
-                <p style="font-size: 12px; margin-top:10px;"> Already have an account? <a href="{{ route('loginpage') }}"
+                <p style="font-size: 12px; margin-top:10px;"> Already have an account? <a href="{{ route('login') }}"
                     class="text-xs text-indigo-500 hover:text-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
                     Sign in</a> </p> 
     

@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('balances', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('user_id')->nullable();
             $table->string('from')->nullable();
             $table->string('to')->nullable();
             $table->integer('debit')->default(0);

@@ -6,32 +6,33 @@
         <table class="min-w-full bg-white">
             <thead>
                 <tr>
-                    <th class="py-2 px-4 border-b">TRANSACTION ID</th>
+                    <th class="py-2 px-4 border-b">#</th>
+                    <th class="py-2 px-4 border-b">DATE</th>
+
                     <th class="py-2 px-4 border-b">FROM</th>
                     <th class="py-2 px-4 border-b">TO</th>
                     <th class="py-2 px-4 border-b">TYPE</th>
-                    <th class="py-2 px-4 border-b">DEBIT</th>
-                    <th class="py-2 px-4 border-b">CREDIT</th>
+                    <th class="py-2 px-4 border-b">AMOUNT</th>
+                  
                     <th class="py-2 px-4 border-b">BALANCE</th>
                 </tr>
             </thead>
             <tbody>
                 @foreach ($transactions as $transaction)
+                @if ($loop->first)
+                    @continue
+                @endif
                 <tr>
-                    <td class="py-2 px-4 border-b">{{ $transaction->id }}</td>
+                    <td class="py-2 px-4 border-b">{{ $loop->iteration-1 }}</td>
+                    <td class="py-2 px-4 border-b"> {{ $transaction->created_at->format('d/m/Y h:i A') }}</td>
+
                     <td class="py-2 px-4 border-b"> {{ $transaction->from }}</td>
                     <td class="py-2 px-4 border-b">{{ $transaction->to}}</td>
-                    <td class="py-2 px-4 border-b">  @if ($transaction->debit > 0)
-                        Debit
-                      @elseif ($transaction->credit > 0)
-                        Credit
-                      @else
-                        N/A
-                      @endif
+                    <td class="py-2 px-4 border-b">  {{ $transaction->debit==0 ? 'Credit':'Debit'}}
                     </td>
                     
-                    <td class="py-2 px-4 border-b">{{ $transaction->debit }}</td>
-                    <td class="py-2 px-4 border-b">{{ $transaction->credit }}</td>
+                    <td class="py-2 px-4 border-b">{{ $transaction->debit==0 ? $transaction->credit :$transaction->debit}}</td>
+                    
                     <td class="py-2 px-4 border-b">{{ $transaction->balance }}</td>
 
 
@@ -41,7 +42,7 @@
             </tbody>
         </table>
 
-        <!-- Pagination links should be here, right after the table -->
+        
         <div class="mt-4">
             {{ $transactions->links() }}
         </div>

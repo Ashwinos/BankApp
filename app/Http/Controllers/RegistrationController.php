@@ -43,6 +43,6 @@ class RegistrationController extends Controller
         $balance->save();
         
            
-        return redirect()->route('loginpage')->with('success', 'Registration successful. You can now log in.');
+        return redirect()->route('login')->with('success', 'Registration successful. You can now log in.');
 }
 }

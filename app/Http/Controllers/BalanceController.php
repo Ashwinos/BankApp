@@ -26,7 +26,7 @@ class BalanceController extends Controller
         $balance->balance =$currentBalance->balance + $amount;
         $balance->debit= 0;
         $balance->credit= $amount;
-        $balance->from = 'self';
+        $balance->from = 'Self Transaction';
         $balance->save();
 
         return redirect()->intended('/home')->with('success', 'Amount added successfully!');
@@ -50,7 +50,7 @@ class BalanceController extends Controller
             $balance->balance =$currentBalance->balance - $amount;
             $balance->debit= $amount;
             $balance->credit= 0;
-            $balance->from = 'self';    
+            $balance->from = 'Self Transaction';    
             $balance->save();
             return redirect()->intended('/home')->with('success', 'Amount withdrawn successfully!');
         }
