@@ -27,6 +27,8 @@ Route::post('/createregistration', [RegistrationController::class, 'createRegist
 Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 Route::post('/addamount', [BalanceController::class, 'addAmount'])->name('addAmount');
 Route::post('/minusamount', [BalanceController::class, 'minusAmount'])->name('minusAmount');
+Route::post('/transferamount', [BalanceController::class, 'transferAmount'])->name('transferAmount');
+
 
 
 
