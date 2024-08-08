@@ -26,7 +26,7 @@
                     @if ($errors->has('password'))
                     <span>{{ $errors->first('password') }}</span>
                     @endif
-                    <a href="{{ route('forgotPassword') }}"
+                    <a href=""
                         class="text-xs text-gray-600 hover:text-indigo-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Forgot
                         Password?</a>
                 </div>
